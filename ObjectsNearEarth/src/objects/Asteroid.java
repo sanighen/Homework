@@ -12,20 +12,20 @@ public class Asteroid {
 
 	private final static String API_KEY = "Ok7lflgXxbtbRKSwQXi78CxAfbLW69HR16YJMluj";
 	private final static String NEO_ENDPOINT = "https://api.nasa.gov/neo/rest/v1/feed";
+	Calendar calendar = Calendar.getInstance();
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-	public void getNeoAsteroids(String startDate) throws Exception {
+	public void getNeoAsteroids(String startDate, String endDate) throws Exception {
 		
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		calendar.setTime(format.parse(startDate));
 		
-		for (int i = 0; i <= 6; i++) {
-			calendar.add(Calendar.DATE, i);
-			calendar.add(Calendar.DATE, -(i - 1));
-			
+//		for (int i = 1; i <= 2; i++) {
+			while (!startDate.equals(endDate)) {
 			startDate = format.format(calendar.getTime());
 			
-			URL nasaUrl = new URL(NEO_ENDPOINT + "?start_date=" + startDate + "&end_date=" + startDate + "&api_key=" + API_KEY);
+			calendar.add(Calendar.DATE, 1);
+			
+			URL nasaUrl = new URL(NEO_ENDPOINT + "?start_date=" + startDate + "&end_date=" + endDate + "&api_key=" + API_KEY);
 			BufferedReader in = new BufferedReader(new InputStreamReader(nasaUrl.openStream()));
 			
 			String stringData = "";
@@ -42,7 +42,7 @@ public class Asteroid {
 
 			 for (int j = 0; j < count; j++) {
 				System.out.println();
-				System.err.println("Data on asteroid №" + (j + 1));
+//				System.err.println("Data on asteroid №" + (j + 1));
 				
 				float diameter = data.getJSONObject("near_earth_objects")
 									 .getJSONArray(startDate)
