@@ -37,10 +37,7 @@ public class Asteroid {
 			startDate = format.format(calendar.getTime());
 			calendar.add(Calendar.DATE, 1);
 
-			System.out.println("----------------" + startDate + "----------------");
-
 			for (int j = 0; j < data.getJSONObject("near_earth_objects").getJSONArray(startDate).length(); j++) {
-				System.err.println("Data on asteroid №" + (j + 1));
 
 				float diameter = data.getJSONObject("near_earth_objects")
 									 .getJSONArray(startDate)
@@ -62,8 +59,8 @@ public class Asteroid {
 										  .getJSONObject(j)
 										  .getBoolean("is_potentially_hazardous_asteroid");
 
-				System.out.printf("Minimum asteroid diameter: %.2f km%n", diameter);
-				System.out.printf("Distance from object to Earth %.1f mln km %n", distance / 1000000);
+				System.out.printf("%s - Minimum asteroid diameter: %.2f km, ",startDate, diameter);
+				System.out.printf("Distance from object to Earth %.1f mln km, ", distance / 1000000);
 				System.out.println("Is potentially hazardous asteroid: " + isHazardous);
 
 			}
