@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 import space.Asteroid;
+import space.NasaDataProvider;
 
 public class CLIApplication {
 	
@@ -13,7 +14,7 @@ public class CLIApplication {
 		System.out.println("Enter start/end dates");
 		String start = in.next(), end = in.next();
 
-		new Asteroid().getNeoAsteroids(start, end);
+		new NasaDataProvider().getNeoAsteroids(start, end);
 
 	}
 
