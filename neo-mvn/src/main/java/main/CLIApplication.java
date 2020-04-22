@@ -2,8 +2,8 @@ package main;
 
 import java.util.Scanner;
 
-import space.Asteroid;
-import space.NasaDataProvider;
+import astro.Asteroid;
+import astro.NasaDataProvider;
 
 public class CLIApplication {
 	

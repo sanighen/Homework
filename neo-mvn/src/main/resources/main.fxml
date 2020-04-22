@@ -23,10 +23,10 @@
             </Label>
             <TableView fx:id="tableView" layoutX="9.0" layoutY="104.0" prefHeight="495.0" prefWidth="622.0">
               <columns>
-                <TableColumn fx:id="date" prefWidth="88.0" text="Date" />
-                <TableColumn fx:id="diameter" prefWidth="219.0" text="Diameter" />
-                <TableColumn fx:id="distance" prefWidth="215.0" text="Distance" />
-                <TableColumn fx:id="isHazardous" prefWidth="99.0" text="Potential hazard" />
+                <TableColumn fx:id="date" prefWidth="96.0" sortable="false" text="Date" />
+                <TableColumn fx:id="diameter" prefWidth="211.0" sortable="false" text="Diameter" />
+                <TableColumn fx:id="distance" prefWidth="192.0" sortable="false" text="Distance" />
+                <TableColumn fx:id="hazardous" prefWidth="122.0" sortable="false" text="Potential hazard" />
               </columns>
             </TableView>
          </children>

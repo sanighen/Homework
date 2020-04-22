@@ -38,8 +38,8 @@ class ArchitectureTest {
 	void checkAsteroidandDataProviderClass() {
 		try {
 
-			Class.forName("space.Asteroid");
-			Class.forName("space.NasaDataProvider");
+			Class.forName("astro.Asteroid");
+			Class.forName("astro.NasaDataProvider");
 
 		} catch (ClassNotFoundException e) {
 			fail("The package \"space\" doesn't have both classes Asteroid and NasaDataProvider.");

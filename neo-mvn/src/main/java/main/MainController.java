@@ -2,6 +2,8 @@ package main;
 
 import java.util.List;
 
+import astro.Asteroid;
+import astro.NasaDataProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,8 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import space.Asteroid;
-import space.NasaDataProvider;
 import javafx.scene.control.TableView;
 
 public class MainController {
@@ -55,7 +55,7 @@ public class MainController {
 	private TableColumn<Asteroid, Float> diameter;
 
 	@FXML
-	private TableColumn<Asteroid, Boolean> isHazardous;
+	private TableColumn<Asteroid, Boolean> hazardous;
 
 	@FXML
 	void getData() throws Exception {
@@ -65,9 +65,9 @@ public class MainController {
 		final ObservableList<Asteroid> data = FXCollections.observableArrayList(asteroids);
 
 		date.setCellValueFactory(new PropertyValueFactory<Asteroid, String>("date"));
-		distance.setCellValueFactory(new PropertyValueFactory<Asteroid, Double>("distance"));
 		diameter.setCellValueFactory(new PropertyValueFactory<Asteroid, Float>("diameter"));
-		isHazardous.setCellValueFactory(new PropertyValueFactory<Asteroid, Boolean>("isHazardous"));
+		distance.setCellValueFactory(new PropertyValueFactory<Asteroid, Double>("distance"));
+		hazardous.setCellValueFactory(new PropertyValueFactory<Asteroid, Boolean>("hazardous"));
 
 		tableView.setItems(data);
 

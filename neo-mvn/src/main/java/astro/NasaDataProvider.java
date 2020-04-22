@@ -1,4 +1,4 @@
-package space;
+package astro;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -70,7 +70,7 @@ public class NasaDataProvider {
 		} while (!startDate.equals(endDate));
 
 		for (Asteroid asteroid : asteroids) {
-			System.out.printf("%s - diameter: %.2f km, ", asteroid.getDate(), asteroid.getDiamteter());
+			System.out.printf("%s - diameter: %.2f km, ", asteroid.getDate(), asteroid.getDiameter());
 			System.out.printf("distance: %4.1f mln km, ", asteroid.getDistance() / 1000000);
 			System.out.println(asteroid.isHazardous() ? "it's hazardous!" : "it's not hazardous");
 		}
