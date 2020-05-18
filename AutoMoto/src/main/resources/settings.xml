@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connection>
+	<user value="postgres"/>
+	<password value="admin"/>
+	<ssl value="false"/>
+</connection>
