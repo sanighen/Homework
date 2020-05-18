@@ -16,16 +16,19 @@ public class CategoryRepository {
 
 	private List<Category> list = new ArrayList<>();
 
-	public Category find(long id) throws SQLException {
-		Statement st = PostgresConnectionManager.getConnection().createStatement();
-		ResultSet rs = st.executeQuery("SELECT * FROM categories WHERE id= " + id + ";");
+	public Category find(long id) throws SQLException, IOException {
+		PreparedStatement pst = PostgresConnectionManager.getConnection().prepareStatement(ReadSQLFile.getText("find"));
+		pst.setLong(1, id);
+		ResultSet rs = pst.executeQuery();
 		Category newCat = null;
 		if (rs.next()) {
 			newCat = new Category();
+			newCat.setId(rs.getLong("id"));
 			newCat.setName(rs.getString("name"));
+			newCat.setParent_category_id(rs.getLong("parent_category_id"));
 		}
+		System.out.println(newCat);
 		return newCat;
-
 	}
 
 	public List<Category> findAll() throws SQLException, IOException {
@@ -39,17 +42,17 @@ public class CategoryRepository {
 			newCat.setParent_category_id(rs.getLong("parent_category_id"));
 			list.add(newCat);
 		}
-//		for (Category l : list) {
-//			System.out.println(l);
-//		}
+		for (Category l : list) {
+			System.out.println(l);
+		}
 		return list;
 	}
 
-	public List<Category> findAllByParent(Category category) throws SQLException {
-		Statement st = PostgresConnectionManager.getConnection().createStatement();
+	public List<Category> findAllByParent(Category category) throws SQLException, IOException {
+		PreparedStatement pst = PostgresConnectionManager.getConnection().prepareStatement(ReadSQLFile.getText("findAllByParent"));
 		long parent_id = category.getParent_category_id();
-		ResultSet rs = st.executeQuery(
-				"SELECT id, name, parent_category_id FROM categories WHERE parent_category_id=" + parent_id + ";");
+		pst.setLong(1, parent_id);
+		ResultSet rs = pst.executeQuery();
 		category = null;
 		while (rs.next()) {
 			category = new Category();
@@ -58,9 +61,9 @@ public class CategoryRepository {
 			category.setParent_category_id(rs.getLong("parent_category_id"));
 			list.add(category);
 		}
-//		for (Category l : list) {
-//			System.out.println(l);
-//		}
+		for (Category l : list) {
+			System.out.println(l);
+		}
 		return list;
 	}
 
@@ -75,7 +78,6 @@ public class CategoryRepository {
 		PreparedStatement pst = PostgresConnectionManager.getConnection().prepareStatement(ReadSQLFile.getText("update"));
 		pst.setString(1, category.getName());
 		pst.setLong(2, category.getId());
-
 		pst.executeUpdate();
 		return true;
 	}

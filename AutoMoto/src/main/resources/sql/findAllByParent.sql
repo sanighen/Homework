@@ -1,0 +1,1 @@
+SELECT id, name, parent_category_id FROM categories WHERE parent_category_id=?;

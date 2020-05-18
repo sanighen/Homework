@@ -24,8 +24,11 @@ public class Application {
 //		cr.findAll();
 		
 //		CategoryRepository cr = new CategoryRepository();
-//		Category cat = new Category(0,"", 1);
-//		cr.findAllByParent(cat);
+//		cr.find(1);
+		
+		CategoryRepository cr = new CategoryRepository();
+		Category cat = new Category(0,"", 1);
+		cr.findAllByParent(cat);
 		
 		// UPDATE 
 //		CategoryRepository cr = new CategoryRepository();
@@ -33,11 +36,9 @@ public class Application {
 //		cr.update(cat);
 		
 		// DELETE
-		CategoryRepository cr = new CategoryRepository();
-		Category cat = new Category(102,"", 0);
-		Category cat2 = new Category(105,"", 0);
-		cr.delete(cat);
-		cr.delete(cat2);
+//		CategoryRepository cr = new CategoryRepository();
+//		Category cat = new Category(102,"", 0);
+//		cr.delete(cat);
 		
 	}
 
