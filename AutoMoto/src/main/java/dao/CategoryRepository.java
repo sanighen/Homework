@@ -89,7 +89,19 @@ public class CategoryRepository {
 	}
 
 	public boolean save(Category category) throws SQLException {
-		return false;
+		try {
+			Category currentCat = find(category.getId());
+
+			if (currentCat != null) {
+				update(category);
+			} else {
+				create(category);
+			}
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
