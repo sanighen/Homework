@@ -32,9 +32,11 @@ public class CategoryRepository {
 	}
 
 	public List<Category> findAll() throws SQLException, IOException {
+
 		Statement st = PostgresConnectionManager.getConnection().createStatement();
 		ResultSet rs = st.executeQuery(ReadSQLFile.getText("findAll"));
 		Category newCat = null;
+		list.clear();
 		while (rs.next()) {
 			newCat = new Category();
 			newCat.setId(rs.getLong("id"));
@@ -42,10 +44,8 @@ public class CategoryRepository {
 			newCat.setParent_category_id(rs.getLong("parent_category_id"));
 			list.add(newCat);
 		}
-		for (Category l : list) {
-			System.out.println(l);
-		}
 		return list;
+		
 	}
 
 	public List<Category> findAllByParent(Category category) throws SQLException, IOException {
@@ -54,15 +54,13 @@ public class CategoryRepository {
 		pst.setLong(1, parent_id);
 		ResultSet rs = pst.executeQuery();
 		category = null;
+		list.clear();
 		while (rs.next()) {
 			category = new Category();
 			category.setId(rs.getLong("id"));
 			category.setName(rs.getString("name"));
 			category.setParent_category_id(rs.getLong("parent_category_id"));
 			list.add(category);
-		}
-		for (Category l : list) {
-			System.out.println(l);
 		}
 		return list;
 	}
